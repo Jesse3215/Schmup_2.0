@@ -17,4 +17,9 @@ public class PlayerMovement : MonoBehaviour
     {
         moveDirection = move.action.ReadValue<Vector2>();
     }
+
+    private void FixedUpdate()
+    {
+        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+    }
 }
