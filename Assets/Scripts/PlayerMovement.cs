@@ -39,7 +39,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Fire(InputAction.CallbackContext obj)
     {
-        Instantiate(projectilePrefab, spawnPosition, transform);
-        Destroy(projectilePrefab, 2);
+        Instantiate(projectilePrefab, spawnPosition.position, Quaternion.identity);
     }
 }
