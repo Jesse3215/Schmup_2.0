@@ -12,6 +12,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveDirection;
 
     public InputActionReference move;
+    public InputActionReference fire;
+
+    public GameObject projectilePrefab;
+    public Transform spawnPosition;
 
     private void Update()
     {
@@ -21,5 +25,21 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = moveDirection * moveSpeed;
+    }
+
+    private void OnEnable()
+    {
+        fire.action.started += Fire;
+    }
+
+    private void OnDisable()
+    {
+        fire.action.started -= Fire;
+    }
+
+    private void Fire(InputAction.CallbackContext obj)
+    {
+        Instantiate(projectilePrefab, spawnPosition, transform);
+        Destroy(projectilePrefab, 2);
     }
 }
