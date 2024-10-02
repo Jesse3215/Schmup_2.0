@@ -10,7 +10,7 @@ public class ScreenWrapper : MonoBehaviour
     [SerializeField] Vector3 bottomright;
 
 
-    public GameObject ship;
+    public GameObject plane;
 
     private void Awake()
     {
@@ -27,10 +27,6 @@ public class ScreenWrapper : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(topleft);
-        Debug.Log(topright);
-        Debug.Log(bottomright);
-        Debug.Log(bottomleft);
 
         if (transform.position.x < topleft.x - 1)
         {
