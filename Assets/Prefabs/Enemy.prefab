@@ -28,14 +28,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 317636052431004862}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.99999934, w: -0.0011765587}
   m_LocalPosition: {x: 8.84, y: 4.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6910644526412097515}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180.135}
 --- !u!212 &2010758243705783854
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -105,8 +105,7 @@ MonoBehaviour:
   movingRight: 1
   movingLeft: 0
   projectilePrefab: {fileID: 8612302629223456696, guid: 9c1c68281885d44499d63d46aefd35b0, type: 3}
-  spawnPosition: {fileID: 0}
-  projectileScript: {fileID: 0}
+  spawnPosition: {fileID: 6910644526412097515}
 --- !u!50 &744790823103861980
 Rigidbody2D:
   serializedVersion: 4
@@ -194,7 +193,7 @@ Transform:
   m_GameObject: {fileID: 3551127242591106280}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7, z: 0}
+  m_LocalPosition: {x: 0, y: 1.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
