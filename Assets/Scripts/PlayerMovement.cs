@@ -24,11 +24,30 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject Live2;
     [SerializeField] private GameObject Live3;
 
+    [SerializeField] private Animator AnimationRight;
+    [SerializeField] private Animator AnimationLeft;
+
+    private void Start()
+    {
+        AnimationRight = GetComponent<Animator>();
+        AnimationLeft = GetComponent<Animator>();
+    }
+
     private void Update()
     {
         moveDirection = move.action.ReadValue<Vector2>();
 
-        if(playerHealth == 3)
+        if(move.action.ReadValue<Vector2>().x == 1)
+        {
+            AnimationRight.SetBool("Right 0", true);
+        }
+
+        if (move.action.ReadValue<Vector2>().x == -1)
+        {
+            AnimationRight.SetBool("Left 0", true);
+        }
+
+        if (playerHealth == 3)
         {
             Live1.SetActive(true);
             Live2.SetActive(true);
