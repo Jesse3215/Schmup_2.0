@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class WaveSpwaner : MonoBehaviour
 {
+    private float rightPos = 9.39f;
+    private float leftPos = -9.39f;
+
     public TextMeshProUGUI waveCountText;
     int waveCount = 1;
 
@@ -33,7 +36,7 @@ public class WaveSpwaner : MonoBehaviour
 
         for (int i = 0; i < enemyCount; i++)
         {
-            GameObject enemyClone = Instantiate(enemy, transform.position, Quaternion.Euler(new Vector3(0, 0, 180)));
+            GameObject enemyClone = Instantiate(enemy, transform.position + Vector3.right * Random.Range(leftPos, rightPos), Quaternion.Euler(new Vector3(0, 0, 180)));
 
             yield return new WaitForSeconds(spawnRate);
         }

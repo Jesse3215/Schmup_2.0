@@ -24,8 +24,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject Live2;
     [SerializeField] private GameObject Live3;
 
-    [SerializeField] private Animator AnimationRight;
-    [SerializeField] private Animator AnimationLeft;
+    private Animator AnimationRight;
+    private Animator AnimationLeft;
 
     private void Start()
     {
@@ -39,12 +39,20 @@ public class PlayerMovement : MonoBehaviour
 
         if(move.action.ReadValue<Vector2>().x == 1)
         {
+            AnimationLeft.SetBool("Left 0", false);
             AnimationRight.SetBool("Right 0", true);
         }
 
         if (move.action.ReadValue<Vector2>().x == -1)
         {
-            AnimationRight.SetBool("Left 0", true);
+            AnimationRight.SetBool("Right 0", false);
+            AnimationLeft.SetBool("Left 0", true);
+        }
+
+        if (move.action.ReadValue<Vector2>().x == 0)
+        {
+            AnimationRight.SetBool("Right 0", false);
+            AnimationLeft.SetBool("Left 0", false);
         }
 
         if (playerHealth == 3)
