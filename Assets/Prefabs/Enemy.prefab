@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9122187864043645043}
   - component: {fileID: 744790823103861980}
   - component: {fileID: 7112705804332837171}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,14 +28,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 317636052431004862}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.99999934, w: -0.0011765587}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 8.84, y: 4.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6910644526412097515}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180.135}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!212 &2010758243705783854
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -148,7 +148,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -162,7 +162,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.00490582}
@@ -177,7 +177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6910644526412097515}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

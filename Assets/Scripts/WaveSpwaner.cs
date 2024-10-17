@@ -1,82 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class WaveSpwaner : MonoBehaviour
 {
-    public List<Enemys> enemies = new List<Enemys>();
-    public int currentWave;
-    public int waveValue;
-    public List<GameObject> enemiesToSpawn = new List<GameObject>();
+    public TextMeshProUGUI waveCountText;
+    int waveCount = 1;
 
-    public Transform spawnLocation;
-    public int waveDuration;
-    private float waveTimer;
-    private float spawnInterval;
-    private float spawnTimer;
+    public float spawnRate = 1.0f;
+    public float timeBetweenWaves = 3.0f;
 
-    private void Start()
+    public int enemyCount = 1;
+
+    public GameObject enemy;
+
+    bool waveIsDone = true;
+
+    void Update()
     {
-        GenerateWave();
-    }
-    private void FixedUpdate()
-    {
-        if(spawnTimer <= 0)
+        waveCountText.text = "Wave: " + waveCount.ToString();
+
+        if (waveIsDone == true)
         {
-            if(enemiesToSpawn.Count > 0)
-            {
-                Instantiate(enemiesToSpawn[0], spawnLocation.position, Quaternion.identity);
-                enemiesToSpawn.RemoveAt(0);
-                spawnTimer = spawnInterval;
-            }
-            else
-            {
-                waveTimer = 0;
-            }
-        }
-        else
-        {
-            spawnTimer = Time.fixedDeltaTime;
-            waveTimer = Time.fixedDeltaTime;
+            StartCoroutine(waveSpawner());
         }
     }
 
-    public void GenerateWave()
+    IEnumerator waveSpawner()
     {
-        waveValue = currentWave * 10;
-        GenerateEnemies();
+        waveIsDone = false;
 
-        spawnInterval = waveDuration / enemiesToSpawn.Count;
-        waveTimer = waveDuration;
-    }
-
-    public void GenerateEnemies()
-    {
-        List<GameObject> generatedEnemies = new List<GameObject>();
-        while(waveValue > 0)
+        for (int i = 0; i < enemyCount; i++)
         {
-            int randEnemyID = Random.Range(0, enemies.Count);
-            int randEnemyCost = enemies[randEnemyID].cost;
+            GameObject enemyClone = Instantiate(enemy, transform.position, Quaternion.Euler(new Vector3(0, 0, 180)));
 
-            if(waveValue - randEnemyCost  >= 0)
-            {
-                generatedEnemies.Add(enemies[randEnemyID].enemyPrefab);
-                waveValue -= randEnemyCost;
-            }
-            else if(waveValue <= 0)
-            {
-                break;
-            }
+            yield return new WaitForSeconds(spawnRate);
         }
-        enemiesToSpawn.Clear();
-        enemiesToSpawn = generatedEnemies;
+
+        //spawnRate -= 0.1f;
+       enemyCount += 1;
+        waveCount += 1;
+
+        yield return new WaitForSeconds(timeBetweenWaves);
+
+        waveIsDone = true;
     }
 }
 
 
-[System.Serializable]
-public class Enemys
-{
-    public GameObject enemyPrefab;
-    public int cost;
-}
+
