@@ -9573,6 +9573,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1d5be510362ccc4d86a71b6e8e881dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemiesSpawned: []
+  enemyClone: {fileID: 317636052431004862, guid: ea5d35eda918be4498995a2416cde220, type: 3}
   waveCountText: {fileID: 677628641}
   spawnRate: 1
   timeBetweenWaves: 3
