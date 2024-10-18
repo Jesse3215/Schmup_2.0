@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] Transform spawnPosition;
 
+    public int hitpoints = 2;
+
     void Start()
     {
         StartCoroutine(Shoot());
@@ -51,7 +53,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        StartCoroutine(OnHit());
     }
 
 
@@ -65,5 +67,13 @@ public class Enemy : MonoBehaviour
             yield return new WaitForSeconds(0.7f);
         }
         
+    }
+
+    private IEnumerator OnHit()
+    {
+        SpriteRenderer sprite = GetComponentInChildren<SpriteRenderer>();
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = Color.white;
     }
 }

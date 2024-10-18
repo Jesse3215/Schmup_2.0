@@ -10,9 +10,12 @@ public class Projectile : MonoBehaviour
 
     private WaveSpwaner waveSpwaner;
 
+    private Enemy enemy;
+
     private void Start()
     {
         waveSpwaner = FindAnyObjectByType<WaveSpwaner>();
+        enemy = FindAnyObjectByType<Enemy>();
 
         rb.AddForce(Vector2.up * bulletSpeed, ForceMode2D.Impulse);
         Destroy(gameObject, 3);
@@ -22,8 +25,13 @@ public class Projectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            waveSpwaner.enemiesSpawned.Remove(collision.gameObject);
-            Destroy(collision.gameObject);
+            enemy.hitpoints -= 1;
+            if(enemy.hitpoints <= 0)
+            {
+                waveSpwaner.enemiesSpawned.Remove(collision.gameObject);
+                Destroy(collision.gameObject);
+            }
+ 
         }
 
         Destroy(gameObject);
