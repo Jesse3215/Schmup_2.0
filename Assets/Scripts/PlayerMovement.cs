@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator AnimationRight;
     private Animator AnimationLeft;
 
+    private bool Frooze;
+
     private void Start()
     {
         AnimationRight = GetComponent<Animator>();
@@ -35,7 +37,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        moveDirection = move.action.ReadValue<Vector2>();
+        if (!Frooze) 
+        {
+            moveDirection = move.action.ReadValue<Vector2>();
+        }
+        else if(Frooze)
+        {
+            moveDirection = Vector2.zero;
+        }
+        
 
         if(move.action.ReadValue<Vector2>().x == 1)
         {
@@ -73,6 +83,14 @@ public class PlayerMovement : MonoBehaviour
             Live2.SetActive(false);
             Live3.SetActive(false);
         }
+    }
+
+    public IEnumerator Freeze()
+    {
+        Frooze = true;
+        yield return new WaitForSeconds(2f);
+        Debug.Log("false");
+        Frooze = false;
     }
 
     private void FixedUpdate()

@@ -12,6 +12,8 @@ public class Projectile : MonoBehaviour
 
     private Enemy enemy;
 
+    private LookAtEnemy lookAtEnemy;
+
     private void Start()
     {
         waveSpwaner = FindAnyObjectByType<WaveSpwaner>();
@@ -26,7 +28,8 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             enemy.hitpoints -= 1;
-            if(enemy.hitpoints <= 0)
+            lookAtEnemy.hitpoints_2 -= 1;
+            if(enemy.hitpoints <= 0 || lookAtEnemy.hitpoints_2 <= 0)
             {
                 waveSpwaner.enemiesSpawned.Remove(collision.gameObject);
                 Destroy(collision.gameObject);

@@ -6,6 +6,9 @@ using UnityEngine;
 public class WaveSpwaner : MonoBehaviour
 {
     [SerializeField] public List<GameObject> enemiesSpawned = new List<GameObject>();
+
+    //public GameObject[] allEnemies = new GameObject[2];
+
     public GameObject enemyClone;
 
     private float rightPos = 9.39f;
@@ -42,6 +45,7 @@ public class WaveSpwaner : MonoBehaviour
 
     IEnumerator waveSpawner()
     {
+
 
         for (int i = 0; i < enemyCount; i++)
         {
