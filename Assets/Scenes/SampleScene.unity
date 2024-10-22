@@ -9541,7 +9541,7 @@ GameObject:
   - component: {fileID: 1903038087}
   m_Layer: 0
   m_Name: WaveSpawner
-  m_TagString: Untagged
+  m_TagString: WaveSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9574,12 +9574,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesSpawned: []
-  enemyClone: {fileID: 2241621474934671214, guid: e44ee6e5d44008e4d835a0851543ddd3, type: 3}
+  allEnemies:
+  - {fileID: 317636052431004862, guid: ea5d35eda918be4498995a2416cde220, type: 3}
+  - {fileID: 2241621474934671214, guid: e44ee6e5d44008e4d835a0851543ddd3, type: 3}
+  enemy: {fileID: 0}
   waveCountText: {fileID: 677628641}
   spawnRate: 1
   timeBetweenWaves: 3
   enemyCount: 1
-  enemy: {fileID: 2241621474934671214, guid: e44ee6e5d44008e4d835a0851543ddd3, type: 3}
 --- !u!1 &2019790989
 GameObject:
   m_ObjectHideFlags: 0

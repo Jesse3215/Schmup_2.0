@@ -15,15 +15,19 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] Transform spawnPosition;
 
-    public int hitpoints = 2;
+    private WaveSpwaner WaveSpwaner;
+
+    public int hitpoints = 3;
 
     void Start()
     {
         StartCoroutine(Shoot());
+        GameObject.Find("WaveSpawner").GetComponent<WaveSpwaner>();
     }
 
     void Update()
     {
+        Debug.Log(hitpoints);
 
         if (movingRight)
         {
@@ -51,9 +55,20 @@ public class Enemy : MonoBehaviour
 
     }
 
+    public void DoDamage()
+    {
+        hitpoints -= 1;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         StartCoroutine(OnHit());
+        DoDamage();
+        if (hitpoints <= 0)
+        {
+            WaveSpwaner.enemiesSpawned.RemoveAll(e => e.GetInstanceID() == gameObject.GetInstanceID());
+            Destroy(gameObject);
+        }
     }
 
 

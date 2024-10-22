@@ -15,18 +15,18 @@ public class LookAtEnemy : MonoBehaviour
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] Transform spawnPosition;
 
-    //[SerializeField] private Transform player;
-
     public int hitpoints_2 = 2;
 
+    private WaveSpwaner WaveSpwaner;
     void Start()
     {
         StartCoroutine(Shoot());
+        WaveSpwaner = GameObject.Find("WaveSpawner").GetComponent<WaveSpwaner>();
     }
 
     void Update()
     {
-        //transform.LookAt(player, Vector3.down);
+        Debug.Log(hitpoints_2);
 
         if (movingRight)
         {
@@ -54,9 +54,20 @@ public class LookAtEnemy : MonoBehaviour
 
     }
 
+    public void DoDamage()
+    {
+        hitpoints_2 -= 1;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         StartCoroutine(OnHit());
+        DoDamage();
+        if (hitpoints_2 <= 0)
+        {
+            WaveSpwaner.enemiesSpawned.RemoveAll(e => e.GetInstanceID() == gameObject.GetInstanceID());
+            Destroy(gameObject);
+        }
     }
 
 

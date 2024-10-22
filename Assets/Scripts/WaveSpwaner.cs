@@ -7,35 +7,27 @@ public class WaveSpwaner : MonoBehaviour
 {
     [SerializeField] public List<GameObject> enemiesSpawned = new List<GameObject>();
 
-    //public GameObject[] allEnemies = new GameObject[2];
+    public GameObject[] allEnemies = new GameObject[2];
 
-    public GameObject enemyClone;
+    private GameObject enemyClone;
+    public GameObject enemy;
 
     private float rightPos = 9.39f;
     private float leftPos = -9.39f;
 
     public TextMeshProUGUI waveCountText;
-    int waveCount = 0;
 
+    int waveCount = 0;
     public float spawnRate = 1.0f;
     public float timeBetweenWaves = 3.0f;
 
     public int enemyCount = 1;
 
-    public GameObject enemy;
-
-    bool waveIsDone = true;
-
     void Update()
     {
         waveCountText.text = "Wave: " + waveCount.ToString();
 
-        /*if (waveIsDone == true)
-        {
-            StartCoroutine(waveSpawner());
-        }*/
-
-        if(enemiesSpawned.Count <= 0) 
+        if (enemiesSpawned.Count <= 0)
         {
             waveCount += 1;
             StartCoroutine(waveSpawner());
@@ -45,13 +37,10 @@ public class WaveSpwaner : MonoBehaviour
 
     IEnumerator waveSpawner()
     {
-
-
         for (int i = 0; i < enemyCount; i++)
         {
-            enemyClone = Instantiate(enemy, transform.position + Vector3.right * Random.Range(leftPos, rightPos), Quaternion.Euler(new Vector3(0, 0, 180)));
 
-            enemiesSpawned.Add(enemyClone);
+            enemiesSpawned.Add(Instantiate(allEnemies[Random.Range(0, 2)], transform.position + Vector3.right * Random.Range(leftPos, rightPos), Quaternion.Euler(new Vector3(0, 0, 180))));
 
             yield return new WaitForSeconds(spawnRate);
         }
