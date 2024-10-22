@@ -85,6 +85,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void StartFreeze()
+    {
+        StartCoroutine(Freeze());   
+    }
+
     public IEnumerator Freeze()
     {
         Frooze = true;

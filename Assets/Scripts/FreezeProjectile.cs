@@ -27,7 +27,7 @@ public class FreezeProjectile : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Hit player");
-            StartCoroutine(playermovement.Freeze());
+            playermovement.StartFreeze();
         }
         Destroy(gameObject);
     }
