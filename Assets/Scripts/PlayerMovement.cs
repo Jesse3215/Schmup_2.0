@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 moveDirection;
 
+    private Projectile projectile;
+
     public InputActionReference move;
     public InputActionReference fire;
 
@@ -24,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject Live2;
     [SerializeField] private GameObject Live3;
 
+    public GameObject GainHPVisuel;
+    public GameObject LoseHPVisuel;
+
     private Animator AnimationRight;
     private Animator AnimationLeft;
 
@@ -33,6 +38,11 @@ public class PlayerMovement : MonoBehaviour
     {
         AnimationRight = GetComponent<Animator>();
         AnimationLeft = GetComponent<Animator>();
+
+        projectile = GetComponent<Projectile>();
+
+        GainHPVisuel.SetActive(false);
+        LoseHPVisuel.SetActive(false);
     }
 
     private void Update()
@@ -93,9 +103,64 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator Freeze()
     {
         Frooze = true;
-        yield return new WaitForSeconds(2f);
-        Debug.Log("false");
+        yield return new WaitForSeconds(2.5f);
         Frooze = false;
+    }
+
+    private IEnumerator Spray()
+    {
+        projectile.bulletSpeed = 5;
+        yield return new WaitForSeconds(5f);
+        projectile.bulletSpeed = 10;
+        StopCoroutine(Spray());
+    }
+
+    private IEnumerator OnHit()
+    {
+        SpriteRenderer sprite = GetComponentInChildren<SpriteRenderer>();
+        LoseHPVisuel.SetActive(true);
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = Color.white;
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = Color.white;
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = Color.white;
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = Color.white;
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = Color.cyan;
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = Color.white;
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = Color.white;
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = Color.white;
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = Color.white;
+        LoseHPVisuel.SetActive(false);
+    }
+
+    public IEnumerator GetHealth()
+    {
+        GainHPVisuel.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        Debug.Log("False");
+        GainHPVisuel.SetActive(false);
+        yield return new WaitForSeconds(0.1f);
+        StopCoroutine(GetHealth());
     }
 
     private void FixedUpdate()
@@ -120,7 +185,37 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        playerHealth -= 1;
+        if (collision.gameObject.CompareTag("EnemyProjectile"))
+        {
+            StartCoroutine(OnHit());
+            playerHealth -= 1;
+        }
+
+        if (collision.gameObject.CompareTag("PickUps"))
+        {
+            if (playerHealth == 3)
+            {
+                playerHealth = 3;
+            }
+
+            if (playerHealth == 2)
+            {
+                playerHealth++;
+                StartCoroutine(GetHealth());
+            }
+
+            if (playerHealth == 1)
+            {
+                playerHealth++;
+                StartCoroutine(GetHealth());
+            }
+        }
+
+        if (collision.gameObject.CompareTag("PickUpFireSpeed"))
+        {
+            StartCoroutine(Spray());
+        }
+
         Debug.Log(playerHealth);
         
 

@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         StartCoroutine(Shoot());
-        GameObject.Find("WaveSpawner").GetComponent<WaveSpwaner>();
+        WaveSpwaner = GameObject.Find("WaveSpawner").GetComponent<WaveSpwaner>();
     }
 
     void Update()
@@ -79,7 +79,7 @@ public class Enemy : MonoBehaviour
         {
             GameObject projectile = Instantiate(projectilePrefab, spawnPosition.position, Quaternion.identity);
             projectile.GetComponent<ProjectileEnemy>().ShootEnemy();
-            yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.8f);
         }
         
     }

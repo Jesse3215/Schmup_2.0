@@ -17,11 +17,16 @@ public class WaveSpwaner : MonoBehaviour
 
     public TextMeshProUGUI waveCountText;
 
-    int waveCount = 0;
-    public float spawnRate = 1.0f;
+    public int waveCount = 0;
+    public float spawnRate = 1f;
     public float timeBetweenWaves = 3.0f;
 
     public int enemyCount = 1;
+
+    private void Awake()
+    {
+
+    }
 
     void Update()
     {
@@ -39,17 +44,14 @@ public class WaveSpwaner : MonoBehaviour
     {
         for (int i = 0; i < enemyCount; i++)
         {
-
             enemiesSpawned.Add(Instantiate(allEnemies[Random.Range(0, 2)], transform.position + Vector3.right * Random.Range(leftPos, rightPos), Quaternion.Euler(new Vector3(0, 0, 180))));
 
             yield return new WaitForSeconds(spawnRate);
         }
 
-        //spawnRate -= 0.1f;
+        spawnRate -= 0.1f;
         enemyCount += 1;
-
-        yield return new WaitForSeconds(timeBetweenWaves);
-
+        //yield return new WaitForSeconds(timeBetweenWaves);
     }
 }
 

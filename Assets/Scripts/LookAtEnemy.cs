@@ -78,7 +78,7 @@ public class LookAtEnemy : MonoBehaviour
         {
             GameObject projectile = Instantiate(projectilePrefab, spawnPosition.position, Quaternion.identity);
             projectile.GetComponent<FreezeProjectile>().ShootEnemy();
-            yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(1.2f);
         }
 
     }
