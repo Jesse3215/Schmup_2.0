@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -119,37 +117,13 @@ public class PlayerMovement : MonoBehaviour
     {
         SpriteRenderer sprite = GetComponentInChildren<SpriteRenderer>();
         LoseHPVisuel.SetActive(true);
-        sprite.color = Color.red;
-        yield return new WaitForSeconds(0.2f);
-        sprite.color = Color.white;
-        yield return new WaitForSeconds(0.2f);
-        sprite.color = Color.red;
-        yield return new WaitForSeconds(0.2f);
-        sprite.color = Color.white;
-        yield return new WaitForSeconds(0.2f);
-        sprite.color = Color.red;
-        yield return new WaitForSeconds(0.2f);
-        sprite.color = Color.white;
-        yield return new WaitForSeconds(0.2f);
-        sprite.color = Color.red;
-        yield return new WaitForSeconds(0.2f);
-        sprite.color = Color.white;
-        yield return new WaitForSeconds(0.2f);
-        sprite.color = Color.cyan;
-        yield return new WaitForSeconds(0.2f);
-        sprite.color = Color.white;
-        yield return new WaitForSeconds(0.2f);
-        sprite.color = Color.red;
-        yield return new WaitForSeconds(0.2f);
-        sprite.color = Color.white;
-        yield return new WaitForSeconds(0.2f);
-        sprite.color = Color.red;
-        yield return new WaitForSeconds(0.2f);
-        sprite.color = Color.white;
-        yield return new WaitForSeconds(0.2f);
-        sprite.color = Color.red;
-        yield return new WaitForSeconds(0.2f);
-        sprite.color = Color.white;
+        for(int i = 0; i < 7; i++)
+        {
+            sprite.color = Color.red;
+            yield return new WaitForSeconds(0.2f);
+            sprite.color = Color.white;
+            yield return new WaitForSeconds(0.2f);
+        }
         LoseHPVisuel.SetActive(false);
     }
 
